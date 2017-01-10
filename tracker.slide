@@ -1,0 +1,72 @@
+Trackers 
+13 Jan 2017
+Tags: go 
+
+Sudarsan 
+
+* Why torrents?
+
+* Some popular users
+- Facebook - Internal distribution of large binaries
+- Blizzard - World of Warcraft / Starcraft updates are P2P
+- Internet Archive - Wayback machine data is distributed through torrents
+- Netflix - Working on a P2P streaming technology
+- Microsoft - Windows 10 a bittorrent style P2P feature that can be turned on or off
+
+: Netflix considering P2P(https://torrentfreak.com/netflix-needs-bittorrent-expert-to-implement-p2p-streaming-150520/)
+
+* Bittorrent protocol
+
+* General overview
+- Seeders
+- Leechers
+- Tracker
+- Infohash
+- Announce
+- Scrape
+
+* Role of trackers
+
+* Client-Server vs P2P 
+.image ./compare.jpg 400 550
+
+* How trackers work
+.image ./tracker.png
+
+* Chihaya
+
+* Who uses Chihaya in production?
+- Facebook
+In order to optimize the flow of traffic within their datacenters, Chihaya is configured to prefer peers within the same subnet.
+Because Facebook organizes their network such that server racks are allocated IP addresses in the same subnet, the vast majority of deployment traffic never impacts the congested areas of their network.
+
+- CoreOS
+Quay is a container registry that offers the ability to download containers via BitTorrent in order to speed up large or geographically distant deployments.
+
+* Why we picked Chihaya
+
+- Performance
+- Highly extensible
+- Pluggable middleware feature
+
+* Although...
+
+- Stateless : In memory storage only
+- Vertically scalable
+
+* Features we extended
+- Added a configurable redis storage
+- Replaced in memory garbage collection daemon with Expire
+
+* How we store data
+
+Every announce has a Peer ID, IP, Port, Type(Seeder or Leecher) and Infohash
+
+We serialize the peer ID, IP and Port into a single value
+
+Serialized peerKeys are pushed into a sorted set with time as scores and Infohash + type as key in O(logN)
+
+Sorted sets have a ticking EXPIRE set to them and disappear if not refreshed
+
+During every announce, expired peerKeys are pruned and the remainder are reported to the announcer.
+
