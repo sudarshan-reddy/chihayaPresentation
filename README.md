@@ -1,6 +1,8 @@
 ## Chihaya presentation
 
-To run this, 
+[Find the presentation here](http://talks.godoc.org/github.com/sudsred/chihayaPresentation/tracker.slide)
+
+To run this locally, 
 
 change directory to the repo
 
@@ -9,3 +11,4 @@ change directory to the repo
  present
 ```
 
+Open 127.0.0.1:3999 on your browser and select the presentation
