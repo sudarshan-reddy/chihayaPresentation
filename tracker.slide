@@ -18,6 +18,7 @@ Sudarsan
 * Bittorrent protocol
 
 * General overview
+- Torrent File
 - Seeders
 - Leechers
 - Tracker
@@ -25,20 +26,20 @@ Sudarsan
 - Announce
 - Scrape
 
-* Role of trackers
-
 * Client-Server vs P2P 
 .image ./compare.jpg 400 550
+
+* Role of trackers
 
 * How trackers work
 .image ./tracker.png
 
-* Chihaya
+* Chihaya - Go based tracker library
 
 * Who uses Chihaya in production?
+
 - Facebook
 In order to optimize the flow of traffic within their datacenters, Chihaya is configured to prefer peers within the same subnet.
-Because Facebook organizes their network such that server racks are allocated IP addresses in the same subnet, the vast majority of deployment traffic never impacts the congested areas of their network.
 
 - CoreOS
 Quay is a container registry that offers the ability to download containers via BitTorrent in order to speed up large or geographically distant deployments.
@@ -52,11 +53,14 @@ Quay is a container registry that offers the ability to download containers via 
 * Although...
 
 - Stateless : In memory storage only
-- Vertically scalable
+- Only way to scale is vertical
 
 * Features we extended
 - Added a configurable redis storage
-- Replaced in memory garbage collection daemon with Expire
+- Replaced in memory garbage collection daemon with redis' built in key Expire feature
+- Highly available and scalable(Horizontally)
+
+- Sent a PR back to chihaya/chihaya. 
 
 * How we store data
 
@@ -66,7 +70,7 @@ We serialize the peer ID, IP and Port into a single value
 
 Serialized peerKeys are pushed into a sorted set with time as scores and Infohash + type as key in O(logN)
 
-Sorted sets have a ticking EXPIRE set to them and disappear if not refreshed
+Sorted sets have a ticking EXPIRE set to them and disappear if not refreshed(i.e announce not received)
 
 During every announce, expired peerKeys are pruned and the remainder are reported to the announcer.
 
