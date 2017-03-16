@@ -84,8 +84,7 @@ We serialize the peer ID, IP and Port into a single value
 Serialized peerKeys are pushed into a sorted set with time as scores and Infohash + type as key in O(logN)
 
 Sorted sets have a ticking EXPIRE set to them and disappear if not refreshed(i.e announce not received)
-.code redis.go /START EXPIRE/,/END EXPIRE/
 
 During every announce, expired peerKeys are pruned and the remainder are reported to the announcer.
-.code redis.go /START ZREMRANGEBYSCORE/,/END ZREMRANGEBYSCORE/
+.code redis.go /START OMIT/,/END OMIT/
 
