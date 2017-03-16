@@ -1,6 +1,6 @@
 ## Chihaya presentation
 
-[Find the presentation here](http://talks.godoc.org/github.com/sudsred/chihayaPresentation/tracker.slide)
+[Find the presentation here](http://talks.godoc.org/github.com/sudarshan-reddy/chihayaPresentation/tracker.slide)
 
 To run this locally, 
 
