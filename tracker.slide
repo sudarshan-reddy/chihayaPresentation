@@ -64,7 +64,7 @@ Internal Redistribution of QubeWire files over diverse geographic locations
 .code middleware.go /START OMIT/,/END OMIT/
 
 * Architecture
-.image arch.png
+.image arch.png 525 750
 
 * Although...
 
