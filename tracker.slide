@@ -13,7 +13,7 @@ _Sudarsan_
 - Internet Archive - Wayback machine data is distributed through torrents
 - Netflix - Working on a P2P streaming technology
 - Microsoft - Windows 10 a bittorrent style P2P feature that can be turned on or off
-- QubeWire - Redistribution of internal Qube files over geographically distant locations
+- QubeWire - Pushing files to servers that are geographically distributed
 
 : Netflix considering P2P(https://torrentfreak.com/netflix-needs-bittorrent-expert-to-implement-p2p-streaming-150520/)
 
@@ -52,9 +52,8 @@ Internal Redistribution of QubeWire files over diverse geographic locations
 * Why not DHT? 
 - Trackers provide more control
 - Additional security and customizability 
-- Because Lego
 
-* Why we picked Chihaya
+* Why Chihaya
 
 - Performance
 - Highly extensible
@@ -63,6 +62,9 @@ Internal Redistribution of QubeWire files over diverse geographic locations
 
 - Pluggable middleware feature
 .code middleware.go /START OMIT/,/END OMIT/
+
+* Architecture
+.image arch.png
 
 * Although...
 
