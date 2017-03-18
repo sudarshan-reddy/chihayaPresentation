@@ -13,7 +13,6 @@ _Sudarsan_
 - Internet Archive - Wayback machine data is distributed through torrents
 - Netflix - Working on a P2P streaming technology
 - Microsoft - Windows 10 a bittorrent style P2P feature that can be turned on or off
-- QubeWire - Pushing files to servers that are geographically distributed
 
 : Netflix considering P2P(https://torrentfreak.com/netflix-needs-bittorrent-expert-to-implement-p2p-streaming-150520/)
 
@@ -44,10 +43,10 @@ _Sudarsan_
 In order to optimize the flow of traffic within their datacenters, Chihaya is configured to prefer peers within the same subnet.
 
 - CoreOS
-Quay is a container registry that offers the ability to download containers via BitTorrent in order to speed up large or geographically distant deployments.
+Quay is a container registry that offers the ability to download containers via BitTorrent .
 
 - Qube 
-Internal Redistribution of QubeWire files over diverse geographic locations
+Pushing files quickly to servers that are geographically distant with our inhouse download client. 
 
 * Why not DHT? 
 - Trackers provide more control
@@ -55,7 +54,7 @@ Internal Redistribution of QubeWire files over diverse geographic locations
 
 * Why Chihaya
 
-- Performance
+- Lean and performant
 - Highly extensible
 
 .code hooks.go /START OMIT/,/END OMIT/
@@ -71,11 +70,9 @@ Internal Redistribution of QubeWire files over diverse geographic locations
 - Stateless : In memory storage only
 - Only way to scale is vertical
 
-* Features we extended
+* Features extended to help with horizontal scalability
 - Added a configurable redis storage
 - Replaced in memory garbage collection daemon with redis' built in key Expire feature
-- Highly available and scalable(Horizontally)
-
 
 * How we store data
 
